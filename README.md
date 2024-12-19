@@ -22,7 +22,7 @@ npm install -g @vue/cli
 Installation
 Clonez le projet :
 ```bash
-git clone https://github.com/<votre-utilisateur-github>/APIavocado.git
+git clone https://github.com/M10-white/APIavocado.git
 ```
 ```bash
 cd APIavocado/APIavocadoFRONT
