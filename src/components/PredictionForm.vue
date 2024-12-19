@@ -1,38 +1,68 @@
 <template>
-  <div>
-    <h1>Avocado Price Prediction</h1>
-    <form @submit.prevent="submitForm">
-      <label for="Quality1">Quality1:</label>
-      <input v-model="formData.Quality1" type="number" required /><br>
+  <div class="container">
+    <h1 class="title">Avocado Price Prediction</h1>
+    <form @submit.prevent="submitForm" class="form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="Quality1">Quality 1</label>
+          <input v-model="formData.Quality1" type="number" required class="input" />
+        </div>
 
-      <label for="Quality2">Quality2:</label>
-      <input v-model="formData.Quality2" type="number" required /><br>
+        <div class="form-group">
+          <label for="Quality2">Quality 2</label>
+          <input v-model="formData.Quality2" type="number" required class="input" />
+        </div>
+      </div>
 
-      <label for="Quality3">Quality3:</label>
-      <input v-model="formData.Quality3" type="number" required /><br>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="Quality3">Quality 3</label>
+          <input v-model="formData.Quality3" type="number" required class="input" />
+        </div>
 
-      <label for="SmallBags">Small Bags:</label>
-      <input v-model="formData.SmallBags" type="number" required /><br>
+        <div class="form-group">
+          <label for="SmallBags">Small Bags</label>
+          <input v-model="formData['Small Bags']" type="number" required class="input" />
+        </div>
+      </div>
 
-      <label for="LargeBags">Large Bags:</label>
-      <input v-model="formData.LargeBags" type="number" required /><br>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="LargeBags">Large Bags</label>
+          <input v-model="formData['Large Bags']" type="number" required class="input" />
+        </div>
 
-      <label for="XLargeBags">XLarge Bags:</label>
-      <input v-model="formData.XLargeBags" type="number" required /><br>
+        <div class="form-group">
+          <label for="XLargeBags">XLarge Bags</label>
+          <input v-model="formData['XLarge Bags']" type="number" required class="input" />
+        </div>
+      </div>
 
-      <label for="year">Year:</label>
-      <input v-model="formData.year" type="number" required /><br>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input v-model="formData.year" type="number" required class="input" />
+        </div>
 
-      <label for="type">Type:</label>
-      <input v-model="formData.type" type="text" required /><br>
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select v-model="formData.type" required class="select">
+            <option value="" disabled selected>Select type</option>
+            <option value="conventional">Conventional</option>
+            <option value="organic">Organic</option>
+          </select>
+        </div>
+      </div>
 
-      <label for="region">Region:</label>
-      <input v-model="formData.region" type="text" required /><br><br>
+      <div class="form-group">
+        <label for="region">Region</label>
+        <input v-model="formData.region" type="text" required class="input" />
+      </div>
 
-      <button type="submit">Predict Price</button>
+      <button type="submit" class="btn">Predict Price</button>
     </form>
 
-    <div v-if="predictedPrice !== null">
+    <div v-if="predictedPrice !== null" class="result">
       <h2>Predicted Price: {{ predictedPrice }}</h2>
     </div>
 
@@ -50,9 +80,9 @@ export default {
         Quality1: null,
         Quality2: null,
         Quality3: null,
-        SmallBags: null,
-        LargeBags: null,
-        XLargeBags: null,
+        'Small Bags': null,
+        'Large Bags': null,
+        'XLarge Bags': null,
         year: null,
         type: '',
         region: ''
@@ -74,7 +104,8 @@ export default {
 
         const data = await response.json();
         if (data.predicted_price) {
-          this.predictedPrice = data.predicted_price;
+          // Formater le prix à 2 décimales
+          this.predictedPrice = data.predicted_price.toFixed(2);
           this.errorMessage = null;
         } else {
           this.errorMessage = data.error || 'An error occurred';
@@ -90,38 +121,127 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  text-align: center;
+/* Global Container */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-form {
-  margin: 20px;
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  margin: 0 auto;
 }
 
-label,
-input {
-  margin-bottom: 10px;
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
-button {
+.form-group {
+  flex-basis: 48%; /* Prend 48% de la largeur pour chaque champ */
+}
+
+label {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+select {
+  height: 40px;
+}
+
+/* Button Styling */
+.btn {
+  padding: 12px 20px;
   background-color: #4CAF50;
   color: white;
-  padding: 10px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  transition: background-color 0.3s;
 }
 
-button:hover {
+.btn:hover {
   background-color: #45a049;
 }
 
+/* Result Styling */
+.result {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.result h2 {
+  color: #333;
+  font-size: 1.5rem;
+}
+
+/* Error Styling */
 .error {
-  color: red;
   text-align: center;
   margin-top: 20px;
+  color: red;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    margin-top: 20px;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+  }
 }
 </style>
