@@ -23,7 +23,7 @@ Installation
 Clonez le projet :
 ```bash
 git clone https://github.com/<votre-utilisateur-github>/APIavocado.git
-
+```
 ```bash
 cd APIavocado/APIavocadoFRONT
 ```
