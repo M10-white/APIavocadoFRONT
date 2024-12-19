@@ -25,7 +25,7 @@ Clonez le projet :
 git clone https://github.com/M10-white/APIavocado.git
 ```
 ```bash
-cd APIavocado/APIavocadoFRONT
+cd src/front
 ```
 
 Installez les dépendances du projet :
