@@ -19,8 +19,8 @@ Pour installer Vue CLI, exécutez la commande suivante :
 npm install -g @vue/cli
 ```
 
-Installation
-Clonez le projet :
+## Installation
+### Clonez le projet :
 ```bash
 git clone https://github.com/M10-white/APIavocado.git
 ```
@@ -28,12 +28,12 @@ git clone https://github.com/M10-white/APIavocado.git
 cd src/front
 ```
 
-Installez les dépendances du projet :
+### Installez les dépendances du projet :
 ```bash
 npm install
 ```
 
-Scripts disponibles
+### Scripts disponibles
 Lancer le projet en mode développement
 ```bash
 npm run serve
@@ -44,14 +44,14 @@ L'application sera accessible à l'adresse suivante par défaut :
 http://localhost:8080/
 ```
 
-Compiler pour la production
+### Compiler pour la production
 ```bash
 npm run build
 ```
 
 Les fichiers optimisés pour la production seront générés dans le dossier dist/.
 
-Vérifier et corriger les erreurs de linting
+### Vérifier et corriger les erreurs de linting
 ```bash
 npm run lint
 ```
